@@ -19,7 +19,7 @@
           <tr v-for="group of groups">
             <td><router-link :to="{name: 'group', params: {id: group.id}}">{{ group.name }}</router-link></td>
             <td>
-              <a>{{ group.default_permission }}</a>
+              <router-link :to="{name: 'groupItems', params: {id: group.id}}">{{ group.default_permission }}</router-link>
               <div v-if="group.admin"><small>Управление пользователями</small></div>
             </td>
             <td>{{ group.created_at | date('DD.MM.YYYY') }}<br><small>{{ group.created_at | date('HH:mm:ss') }}</small></td>

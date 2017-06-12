@@ -25,6 +25,7 @@
               <li><router-link to="/users">Пользователи</router-link></li>
               <li><router-link to="/log">Журнал</router-link></li>
               <li class="divider"></li>
+              <li><router-link to="/parameters">Параметры</router-link></li>
               <li><router-link to="/profile">Редактировать профиль</router-link></li>
               <li><router-link to="/password">Сменить пароль</router-link></li>
               <li class="divider"></li>

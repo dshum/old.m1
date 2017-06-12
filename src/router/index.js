@@ -9,11 +9,14 @@ import Groups from '@/components/Groups'
 import GroupList from '@/components/GroupList'
 import Group from '@/components/Group'
 import AddGroup from '@/components/AddGroup'
+import GroupItems from '@/components/GroupItems'
+import GroupElements from '@/components/GroupElements'
 import Users from '@/components/Users'
 import UserList from '@/components/UserList'
 import AddUser from '@/components/AddUser'
 import User from '@/components/User'
 import Log from '@/components/Log'
+import Parameters from '@/components/Parameters'
 import Profile from '@/components/Profile'
 import Password from '@/components/Password'
 
@@ -49,6 +52,16 @@ export default new Router({
               path: ':id',
               name: 'group',
               component: Group
+            },
+            {
+              path: ':id/items',
+              name: 'groupItems',
+              component: GroupItems
+            },
+            {
+              path: ':id/items/:item',
+              name: 'groupElements',
+              component: GroupElements
             }
           ]
         },
@@ -77,6 +90,11 @@ export default new Router({
           path: '/log',
           name: 'log',
           component: Log
+        },
+        {
+          path: '/parameters',
+          name: 'parameters',
+          component: Parameters
         },
         {
           path: '/profile',

@@ -21,7 +21,7 @@
             <td><router-link :to="{name: 'user', params: {id: user.id}}">{{ user.login }}</router-link></td>
             <td>{{ user.first_name }} {{ user.last_name }}<br><small>{{ user.email }}</small></td>
             <td>
-              <div v-for="group of user.groups"><a>{{ group.name }}</a></div>
+              <div v-for="group of user.groups"><router-link :to="{name: 'group', params: {id: group.id}}">{{ group.name }}</router-link></div>
               <div v-if="user.super">Суперпользователь</div>
             </td>
             <td>{{ user.created_at | date('DD.MM.YYYY') }}<br><small>{{ user.created_at | date('HH:mm:ss') }}</small></td>
