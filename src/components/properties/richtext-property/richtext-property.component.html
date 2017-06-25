@@ -1,0 +1,14 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label><span attr.name="{{view.name}}" class="error"></span><br>
+    <tinymce [elementId]="'richtext'" [value]="view.value" (onEditorKeyup)="setModel($event)" (onTinymceSubmit)="onSubmit()"></tinymce>
+</div>
+<div *ngIf="mode == 'browse'">
+    {{view.value}}
+</div>
+<div *ngIf="mode == 'link'">
+    <div class="label textarea"><span class="glyphicons glyphicons-comments"></span><span>{{view.title}}</span></div>
+</div>
+<div *ngIf="mode == 'search'">
+    <div class="label textarea"><span class="glyphicons glyphicons-comments"></span><span>{{view.title}}</span></div>
+    <div><input type="text" value="{{view.value}}" placeholder=""></div>
+</div>

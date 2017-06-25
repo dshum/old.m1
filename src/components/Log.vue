@@ -9,29 +9,37 @@
           <div class="log search-form-params">
             <div class="row">
               <div class="block">
-                <div class="label">Комментарий</div>
-                <input type="text" name="comments" v-model="model.comments" placeholder="Комментарий">
+                <div class="container">
+                  <div class="label">Комментарий</div>
+                  <input type="text" name="comments" v-model="model.comments" placeholder="Комментарий">
+                </div>
               </div>
               <div class="block">
-                <div class="label">Пользователь</div>
-                <select name="user" v-model="model.user">
-                  <option value="">Все пользователи</option>
-                  <option v-for="user of users" v-bind:value="user.id">{{ user.login }} ({{ user.first_name }} {{ user.last_name }})</option>
-                </select>
+                <div class="container">
+                  <div class="label">Пользователь</div>
+                  <select name="user" v-model="model.user">
+                    <option value="">Все пользователи</option>
+                    <option v-for="user of users" v-bind:value="user.id">{{ user.login }} ({{ user.first_name }} {{ user.last_name }})</option>
+                  </select>
+                </div>
               </div>
               <div class="block">
-                <div class="label">Тип операции</div>
-                <select name="type" v-model="model.type">
-                  <option value="">Все операции</option>
-                  <option v-for="type of types" v-bind:value="type.name">{{ type.title }}</option>
-                </select>
+                <div class="container">
+                  <div class="label">Тип операции</div>
+                  <select name="type" v-model="model.type">
+                    <option value="">Все операции</option>
+                    <option v-for="type of types" v-bind:value="type.name">{{ type.title }}</option>
+                  </select>
+                </div>
               </div>
               <div class="block">
-                <div class="label">Дата</div>
-                <div>
-                  <datepicker v-bind:monday-first="true" format="dd.MM.yyyy" input-class="date" language="ru" v-model="model.from" name="from" placeholder="От"></datepicker> &mdash;
-                  <datepicker v-bind:monday-first="true" format="dd.MM.yyyy" input-class="date" language="ru" v-model="model.to" name="to" placeholder="До"></datepicker>
-                  <span class="reset" @click="reset()">&#215;</span>
+                <div class="container">
+                  <div class="label">Дата</div>
+                  <div>
+                    <datepicker v-bind:monday-first="true" format="dd.MM.yyyy" input-class="date" language="ru" v-model="model.from" name="from" placeholder="От"></datepicker> &mdash;
+                    <datepicker v-bind:monday-first="true" format="dd.MM.yyyy" input-class="date" language="ru" v-model="model.to" name="to" placeholder="До"></datepicker>
+                    <span class="reset" @click="reset()">&#215;</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -55,7 +63,7 @@
             </ul>
           </div>
           <div class="next" v-if="pager.hasMorePages" @click="nextPage()">
-            Дальше<i class="fa fa-angle-right"></i>
+            Дальше<i class="fa fa-arrow-right"></i>
           </div>
         </div>
       </div>
@@ -192,11 +200,11 @@ export default {
 
 <style>
 .log.search-form-params input[type="text"] {
-    width: 15rem;
+    width: 10rem;
 }
 
 .log.search-form-params input[type="text"].date {
-    width: 6rem;
+    width: 5rem;
     border-color: #999;
 }
 

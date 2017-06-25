@@ -31,7 +31,7 @@
           </table>
         </div>
         <div>
-          <router-link to="/users/add" class="addnew">Добавить пользователя<i class="fa fa-angle-right"></i></router-link>
+          <router-link to="/users/add" class="addnew">Добавить пользователя<i class="fa fa-arrow-right"></i></router-link>
         </div>
       </div>
     </transition>

@@ -1,0 +1,14 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label><span attr.name="{{view.name}}" class="error"></span><br>
+    <textarea name="{{view.name}}" [(ngModel)]="model[view.name].value" [disabled]="view.readonly" placeholder="{{view.title}}" rows="10"></textarea>
+</div>
+<div *ngIf="mode == 'browse'">
+    <div [innerHTML]="nl2br(view.value)"></div>
+</div>
+<div *ngIf="mode == 'link'">
+    <div class="label textarea"><span class="glyphicons glyphicons-comments"></span><span>{{view.title}}</span></div>
+</div>
+<div *ngIf="mode == 'search'">
+    <div class="label textarea"><span class="glyphicons glyphicons-comments"></span><span>{{view.title}}</span></div>
+    <div><input type="text" value="{{view.value}}" placeholder=""></div>
+</div>

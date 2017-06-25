@@ -1,0 +1,25 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label><span attr.name="{{view.name}}" class="error"></span><br>
+    <input type="text" name="{{view.name}}" [(ngModel)]="model[view.name].value" [disabled]="view.readonly" placeholder="{{view.title}}">
+</div>
+<div *ngIf="mode == 'browse'">
+    {{view.value}}
+</div>
+<div *ngIf="mode == 'link'">
+    <div *ngIf="view.isMainProperty" class="label main"><span class="glyphicons glyphicons-flag"></span><span>ID или название</span></div>
+    <div *ngIf=" ! view.isMainProperty" class="label textfield"><span class="glyphicons glyphicons-pencil"></span><span>{{view.title}}</span></div>
+</div>
+<div *ngIf="mode == 'search'">
+    <div *ngIf="view.isMainProperty">
+        <div class="label main"><span class="glyphicons glyphicons-flag"></span><span>{{view.title}}</span></div>
+        <div>
+            <input type="text" name="{{view.name}}" id="{{view.name}}_autocomplete" [(ngModel)]="value" placeholder="ID или название">
+            <span attr.name="{{view.name}}_auto" class="autocomplete-container"></span>
+            <span attr.name="{{view.name}}" class="reset" (click)="reset()">&#215;</span>
+        </div>
+    </div>
+    <div *ngIf=" ! view.isMainProperty">
+        <div class="label textfield"><span class="glyphicons glyphicons-pencil"></span><span>{{view.title}}</span></div>
+        <div><input type="text" value="{{view.value}}" placeholder=""></div>
+    </div>
+</div>

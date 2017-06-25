@@ -1,0 +1,15 @@
+<div *ngIf="mode == 'edit'">
+    <span attr.name="{{view.name}}" class="error"></span>
+    <p><input type="checkbox" name="{{view.name}}" id="{{view.name}}" [(ngModel)]="model[view.name].value" [disabled]="view.readonly" value="1"> <label attr.for="{{view.name}}">{{view.title}}</label></p>
+</div>
+<div *ngIf="mode == 'browse'">
+    <span *ngIf="view.value">Да</span>
+    <span *ngIf=" ! view.value" class="grey">Нет</span>
+</div>
+<div *ngIf="mode == 'link'">
+    <div class="label checkbox"><span class="glyphicons glyphicons-ok-2"></span><span>{{view.title}}</span></div>
+</div>
+<div *ngIf="mode == 'search'">
+    <div class="label checkbox"><span class="glyphicons glyphicons-ok-2"></span><span>{{view.title}}</span></div>
+    <div></div>
+</div>

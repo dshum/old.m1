@@ -1,0 +1,14 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label><span attr.name="{{view.name}}" class="error"></span><br>
+    <input type="text" name="{{view.name}}" [(ngModel)]="model[view.name].value" [disabled]="view.readonly" placeholder="{{view.title}}" class="number">
+</div>
+<div *ngIf="mode == 'browse'">
+    {{view.value}}
+</div>
+<div *ngIf="mode == 'link'">
+    <div class="label number"><span class="glyphicons glyphicons-calculator"></span><span>{{view.title}}</span></div>
+</div>
+<div *ngIf="mode == 'search'">
+    <div class="label number"><span class="glyphicons glyphicons-calculator"></span><span>{{view.title}}</span></div>
+    <div><input type="text" value="{{view.value}}" placeholder="" class="number"></div>
+</div>

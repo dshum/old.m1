@@ -5,6 +5,9 @@ import VueResource from 'vue-resource'
 import Login from '@/components/Login'
 import Base from '@/components/Base'
 import Home from '@/components/Home'
+import Browse from '@/components/Browse'
+import Search from '@/components/Search'
+import SearchItem from '@/components/SearchItem'
 import Groups from '@/components/Groups'
 import GroupList from '@/components/GroupList'
 import Group from '@/components/Group'
@@ -35,11 +38,26 @@ export default new Router({
           component: Home
         },
         {
+          path: '/browse/:classId?',
+          name: 'browse',
+          component: Browse
+        },
+        {
+          path: '/search',
+          name: 'search',
+          component: Search
+        },
+        {
+          path: '/search/:item',
+          name: 'searchItem',
+          component: SearchItem
+        },
+        {
           path: '/groups',
           component: Groups,
           children: [
             {
-              path: '/',
+              path: '',
               name: 'groupList',
               component: GroupList
             },

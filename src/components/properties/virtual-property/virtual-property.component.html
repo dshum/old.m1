@@ -1,0 +1,7 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label><br>
+    <div [innerHTML]="view.value"></div>
+</div>
+<div *ngIf="mode == 'browse'">
+    <div [innerHTML]="view.value"></div>
+</div>

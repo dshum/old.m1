@@ -1,0 +1,16 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label>
+    <div *ngIf="view.list">
+        <p *ngFor="let element of view.list">
+            <input type="checkbox" name="{{view.name}}[]" id="many_{{element.classId}}" value="{{element.classId}}" checked>
+            <label attr.for="many_{{element.classId}}"><a [routerLink]="['/home/', element.classId, 'edit']">{{element.name}}</a></label>
+        </p>
+    </div>
+</div>
+<div *ngIf="mode == 'browse'">
+    <div *ngIf="view.list">
+        <div *ngFor="let element of view.list">
+            <a [routerLink]="['/home/', element.classId, 'edit']">{{element.name}}</a>
+        </div>
+    </div>
+</div>

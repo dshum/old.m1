@@ -1,0 +1,16 @@
+<div *ngIf="mode == 'edit'">
+    <label>{{view.title}}:</label><span attr.name="{{view.name}}" class="error"></span><br>
+    <div *ngIf="view.exists"><img src="{{view.src}}" /></div>
+    <div *ngIf="view.maxFilesize"><small class="red">Максимальный размер файла {{view.maxFilesize}} Кб</small></div>
+    <div *ngIf="view.maxWidth && view.maxWidth"><small class="red">Минимальный размер изображения {{view.maxWidth}}&#215;{{view.maxWidth}} пикселей</small></div>
+    <div><small class="red">Допустимые форматы файла: GIF, JPG, PNG</small></div>
+    <div class="loadfile">
+        <div class="file" attr.name="{{view.name}}" (click)="selectFile($event)">Выберите файл</div>
+        <span class="reset" attr.name="{{view.name}}" file (click)="resetFile($event)">&#215;</span>
+        <div class="file-hidden"><input type="file" attr.name="{{view.name}}" (change)="changeFile($event)"></div>
+    </div>
+    <p><input type="checkbox" name="{{view.name}}_drop" id="{{view.name}}_drop" [(ngModel)]="model[view.name].drop" (change)="resetFile($event)"><label attr.for="{{view.name}}_drop">Удалить</label></p>
+</div>
+<div *ngIf="mode == 'browse'">
+    <div *ngIf="view.exists"><img src="{{view.src}}" width="{{view.width < 150 ? view.width : 150}}" /></div>
+</div>

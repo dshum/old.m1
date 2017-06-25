@@ -29,7 +29,7 @@
           </table>
         </div>
         <div>
-          <router-link to="/groups/add" class="addnew">Добавить группу<i class="fa fa-angle-right"></i></router-link>
+          <router-link to="/groups/add" class="addnew">Добавить группу<i class="fa fa-arrow-right"></i></router-link>
         </div>
       </div>
     </transition>

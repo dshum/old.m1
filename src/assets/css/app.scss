@@ -6,9 +6,9 @@ $fa-font-path: '../../../node_modules/font-awesome/fonts';
 $roboto-font-path: '../../../node_modules/roboto-fontface/fonts';
 @import '../../../node_modules/roboto-fontface/css/roboto/sass/roboto-fontface';
 
-html {
+body {
   line-height: 1.5;
-  font-family: "Roboto", sans-serif;
+  font-family: sans-serif;
   font-size: 14px;
   font-weight: normal;
   color: rgba(0, 0, 0, 1);
@@ -153,7 +153,7 @@ a {
 }
 
 form p {
-  margin: 5px 0;
+  margin: 0.5rem 0;
   text-align: left;
 }
 
@@ -196,9 +196,9 @@ form p label small {
   transition: .28s ease;
   /* webkit (konqueror) browsers */
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+   -moz-user-select: none;
+    -ms-user-select: none;
+      user-select: none;
 }
 
 [type="radio"] + label:before,
@@ -224,7 +224,7 @@ form p label small {
   border-radius: 50%;
   border: 2px solid #5a5a5a;
   -webkit-transform: scale(0);
-          transform: scale(0);
+      transform: scale(0);
 }
 
 /* Checked styles */
@@ -239,7 +239,7 @@ form p label small {
   background-color: #26a69a;
   z-index: 0;
   -webkit-transform: scale(1.02);
-          transform: scale(1.02);
+      transform: scale(1.02);
 }
 
 /* Disabled style */
@@ -325,11 +325,11 @@ form p label small {
   border-right: 2px solid #26a69a;
   border-bottom: 2px solid #26a69a;
   -webkit-transform: rotate(40deg);
-          transform: rotate(40deg);
+      transform: rotate(40deg);
   -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
+      backface-visibility: hidden;
   -webkit-transform-origin: 100% 100%;
-          transform-origin: 100% 100%;
+      transform-origin: 100% 100%;
 }
 
 [type="checkbox"]:checked:disabled + label:before {
@@ -337,158 +337,180 @@ form p label small {
   border-bottom: 2px solid rgba(0, 0, 0, 0.26);
 }
 
+[type="checkbox"].indeterminate + label:before {
+  top: -11px;
+  left: -12px;
+  width: 10px;
+  height: 22px;
+  border-top: none;
+  border-left: none;
+  border-right: 2px solid #26a69a;
+  border-bottom: none;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+}
+
+[type="checkbox"].indeterminate:disabled + label:before {
+  border-right: 2px solid rgba(0, 0, 0, 0.26);
+  background-color: transparent;
+}
+
 body {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 body > div.container {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 
 .halflings,
 .glyphicons {
-    position: relative;
-    display: inline-block;
-    top: 4px;
-    font-style: normal;
-    font-weight: normal;
-    color: inherit;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  display: inline-block;
+  top: 4px;
+  font-style: normal;
+  font-weight: normal;
+  color: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Buttons */
 
 .buttons {
-    display: table;
-    margin: 0 -1rem 1rem -1rem;
-    border-bottom: 1px solid #ddd;
+  display: table;
+  margin: 0 -1rem 1rem -1rem;
+  border-bottom: 1px solid #ddd;
 }
 
 .buttons .button {
-    display: inline-block;
-    vertical-align: middle;
-    text-align: center;
-    cursor: pointer;
-    border: 1px solid transparent;
-    padding: 0.75rem 1rem 0.5rem 1rem;
-    color: #999;
+  display: inline-block;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid transparent;
+  padding: 0.75rem 1rem 0.5rem 1rem;
+  color: #999;
 }
 
 .buttons .button.enabled {
-    color: black;
-    transition: 0.3s;
+  color: black;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .buttons .button.enabled:hover {
-    background-color: #eee;
-    transition: 0.1s;
+  background-color: #eee;
+  transition: 0.1s;
 }
 
-.buttons .button > .halflings {
-    margin-bottom: 0.25rem;
-    font-size: 1.2rem;
-    color: silver;
+.buttons .button > .fa {
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  color: silver;
 }
 
-.buttons .button > div > .halflings {
-    margin-left: 0.25rem;
-    margin-top: 0.2rem;
-    font-size: 0.8rem;
-    color: silver;
+.buttons .button > div > .fa {
+  margin-left: 0.25rem;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  color: silver;
 }
 
-.buttons .button.enabled > div > .halflings {
-    color: black;
-    transition: 0.3s;
+.buttons .button.enabled > div > .fa {
+  color: black;
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.up > .halflings {
-    color: steelblue;
-    transition: 0.3s;
+.buttons .button.enabled.up > .fa {
+  color: steelblue;
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.edit > .halflings {
-    color: goldenrod;
-    transition: 0.3s;
+.buttons .button.enabled.edit > .fa {
+  color: goldenrod;
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.save > .halflings {
-    color: rgb(145, 185, 25);
-    transition: 0.3s;
+.buttons .button.enabled.save > .fa {
+  color: rgb(145, 185, 25);
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.copy > .halflings {
-    color: teal;
-    transition: 0.3s;
+.buttons .button.enabled.copy > .fa {
+  color: teal;
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.move > .halflings {
-    color: goldenrod;
-    transition: 0.3s;
+.buttons .button.enabled.move > .fa {
+  color: goldenrod;
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.tag > .halflings {
-    color: fuchsia;
-    transition: 0.3s;
+.buttons .button.enabled.tag > .fa {
+  color: fuchsia;
+  transition: 0.3s;
 }
 
-.buttons .button.enabled.delete > .halflings {
-    color: crimson;
-    transition: 0.3s;
+.buttons .button.enabled.delete > .fa {
+  color: crimson;
+  transition: 0.3s;
 }
 
 /* Common */
 
 .dnone {
-    display: none;
+  display: none;
 }
 
 .dashed {
-    border-bottom: 1px dashed #000;
+  border-bottom: 1px dashed #000;
 }
 
 .hand {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 /* Forms */
 
 form {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 form .row {
-  padding: 0 0 1rem 0;
+  margin: 1rem 0;
 }
 
 form .row.submit {
-  padding-top: 1rem;
+  margin: 2rem 0 1rem 0;
 }
 
 form input[type="text"],
 form input[type="password"],
 form textarea {
-    margin-top: 0.2rem;
+  margin-top: 0.2rem;
 }
 
 form input[type="text"],
 form input[type="password"] {
-    width: 20rem;
+  width: 20rem;
 }
 
 form input[type="text"]:focus:not([readonly]) {
-    border: 1px solid #999;
-    background-color: white;
+  border: 1px solid #999;
+  background-color: white;
 }
 
 form textarea {
@@ -547,105 +569,114 @@ form input.one {
   cursor: pointer;
 }
 
+.addnew,
 .next {
-    display: inline-block;
-    margin: 1rem 0;
-    padding: 0.5rem 1rem;
-    border: 2px solid orange;
-    border-radius: 2px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  border: 2px solid orange;
+  border-radius: 2px;
+  font-size: 1rem;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
+.addnew:hover,
 .next:hover {
-    background-color: orange;
-    transition: 0.2s ease;
+  background-color: orange;
+  transition: 0.2s ease;
 }
 
-.next .halflings {
-    top: 4px;
+.addnew .fa,
+.next .fa {
+  display: inline-block;
+  margin-left: 1rem;
+  font-size: 1rem;
 }
 
 .next.waiting {
-    background-color: gold;
-    color: black;
+  background-color: gold;
+  color: black;
 }
 
 /* Tables */
 
 ul.header {
-    margin: 0;
+  margin: 0;
 }
 
 ul.header li {
-    display: inline-block;
-    float: left;
-    height: 2rem;
-    line-height: 2rem;
-    vertical-align: middle;
-    padding: 0;
+  display: inline-block;
+  float: left;
+  height: 2rem;
+  line-height: 2rem;
+  vertical-align: middle;
+  padding: 0;
 }
 
 ul.header li:last-child {
-    float: none;
+  float: none;
 }
 
 ul.header li.h2 {
-    line-height: 1.8rem;
+  line-height: 1.8rem;
 }
 
 ul.header li.h2 span {
-    font-size: 1.3rem;
-    color: #ccc;
+  font-size: 1.3rem;
+  color: #ccc;
 }
 
 .item.active ul.header li.h2 span {
-    color: #396;
-    border-bottom: 1px dashed steelblue;
-    cursor: pointer;
+  color: #396;
+  border-bottom: 1px dashed steelblue;
+  cursor: pointer;
 }
 
 ul.header li.total {
-    margin-left: 1rem;
-    font-size: 0.9rem;
-    color: #666;
+  margin-left: 1rem;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 ul.header li.checked {
-    margin-left: 1rem;
-    font-size: 0.9rem;
+  margin-left: 1rem;
+  font-size: 0.9rem;
 }
 
 ul.header li.checked > span {
-    padding: 0.25rem 0.5rem;
-    background-color: #375;
-    border-radius: 2px;
-    font-size: 0.9rem;
-    color: white;
+  padding: 0.25rem 0.5rem;
+  background-color: #375;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  color: white;
 }
 
 table.elements {
-    margin: 1rem 0 2rem 0;
-    border-collapse: collapse;
-    font-size: 1rem;
+  margin: 0;
+  border-collapse: collapse;
+  font-size: 1rem;
 }
 
 table.elements tr {
-    vertical-align: top;
-    border-bottom: 1px solid #ddd; 
+  vertical-align: top;
+  border-bottom: 1px solid #ddd; 
 }
 
 table.elements > tbody > tr:nth-child(odd) {
-    background-color: #f7f8f9;
+  background-color: #f7f8f9;
 }
 
 table.elements > tbody > tr.checked {
-    background-color: #e7faea;
+  background-color: #e7faea;
 }
 
 table.elements tr:last-child {
@@ -653,73 +684,77 @@ table.elements tr:last-child {
 }
 
 table.elements th {
-    vertical-align: bottom;
-    border-bottom: 2px solid #acb;
-    padding: 0.5rem 1rem;
-    color: #798;
-    font-weight: normal;
-    font-size: 0.9rem;
-    text-align: left;
-    white-space: nowrap;
+  vertical-align: bottom;
+  border-bottom: 2px solid #acb;
+  padding: 0.5rem 1rem;
+  color: #798;
+  font-weight: normal;
+  font-size: 0.9rem;
+  text-align: left;
+  white-space: nowrap;
 }
 
 table.elements th a {
-    color: inherit;
+  color: inherit;
 }
 
 table.elements th small {
-    margin-left: 0.25rem;
-    color: inherit;
+  margin-left: 0.25rem;
+  color: inherit;
 }
 
 table.elements td {
-    padding: 0.5rem 1rem;
-    text-align: left;
-}
-
-table.elements td.name a {
-    white-space: nowrap;
-}
-
-table.elements td.name a span.halflings {
-    margin-right: 0.5rem;
-    color: goldenrod;
-}
-
-table.elements td.name a span {
-    white-space: normal;
-}
-
-table.elements th.date,
-table.elements td.date {
-    width: 5rem;
+  padding: 0.5rem 1rem;
+  text-align: left;
 }
 
 table.elements th.browse,
 table.elements td.browse {
-    width: 2rem;
-    padding: 0.5rem 0;
-    text-align: center;
+  width: 0.5rem;
+  padding: 0.5 0;
+  text-align: left;
 }
 
-table.elements th.browse .glyphicons {
-    top: 3px;
+table.elements td.browse .fa {
+  position: relative;
+  top: -2px;
+  font-size: 1.5rem;
+  color: #3a7;
 }
 
-table.elements td.browse a {
-    color: black;
+table.elements td.name {
+  max-width: 30rem;
+}
+
+table.elements td.name a {
+  white-space: nowrap;
+}
+
+table.elements td.name a .fa {
+  margin-right: 0.5rem;
+  color: goldenrod;
+  font-size: 0.9rem;
+}
+
+table.elements td.name a span {
+  white-space: normal;
+}
+
+table.elements th.date,
+table.elements td.date {
+  width: 5rem;
 }
 
 table.elements th.check,
 table.elements td.check {
-    width: 3rem;
-    padding: 0.5rem 0;
-    text-align: center;
+  width: 3rem;
+  padding: 0.5rem 0;
+  text-align: center;
 }
 
 table.elements th.check {
-    padding: 0.25rem 0;
-    vertical-align: bottom;
+  padding: 0.25rem 0;
+  vertical-align: bottom;
 }
 
 table.elements div.check {
@@ -732,114 +767,120 @@ table.elements div.check {
 }
 
 table.elements thead > tr.checked div.check {
-    background-color: #acb;
+  background-color: #acb;
 }
 
 table.elements tbody > tr.checked div.check {
-    background-color: #acb;
+  background-color: #acb;
 }
 
 /* Search form */
 
 .search-form-links {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .search-form-links .row {
-    margin: 0;
-    padding: 0;
-    clear: both;
+  margin: 0;
+  padding: 0;
+  clear: both;
 }
 
 .search-form-links .link {
-    margin: 0 2rem 1rem 0;
-    float: left;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    padding: 0.5rem 0;
-    color: black;
-    font-size: 1rem;
-    cursor: pointer;
+  display: inline-block;
+  margin: 0 2rem 1rem 0;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  padding: 0 0 0.25rem 0;
+  color: black;
+  font-size: 1rem;
+  cursor: pointer;
 }
 
 .search-form-links .link.active {
-    border-bottom: 2px solid goldenrod;
+  border-bottom: 2px solid goldenrod;
 }
 
-.search-form-links .label .glyphicons {
-    top: 5px;
-    margin-right: 0.5rem;
-    font-size: 0.8rem;
+.search-form-links .label .fa {
+  position: relative;
+  top: -2px;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
 }
 
-.search-form-links .link.active .label .glyphicons {
-    color: black;
+.search-form-links .link.active .label .fa {
+  color: black;
 }
 
-.date .glyphicons {
-    color: slateblue;
+.date .fa {
+  color: slateblue;
 }
 
-.main .glyphicons {
-    color: tomato;
+.mainp .fa {
+  color: tomato;
 }
 
-.textfield .glyphicons {
-    color: darkgoldenrod;
+.textfield .fa {
+  color: darkgoldenrod;
 }
 
-.textarea .glyphicons {
-    color: lightseagreen;
+.textarea .fa {
+  color: lightseagreen;
 }
 
-.number .glyphicons {
-    color: salmon;
+.number .fa {
+  color: salmon;
 }
 
-.checkbox .glyphicons {
-    color: dodgerblue;
+.checkbox .fa {
+  color: dodgerblue;
 }
 
-.one .glyphicons {
-    color: fuchsia;
+.one .fa {
+  color: fuchsia;
 }
 
 .search-form-params {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .search-form-params .row {
-    margin: 0;
-    padding: 0;
-    clear: both;
+  margin: 0;
+  padding: 0;
+  clear: both;
 }
 
 .search-form-params .block {
-    margin: 0 2rem 1rem 0;
-    float: left;
-    // white-space: nowrap;
-    padding: 0.5rem 0;
-    background-color: white;
+  margin: 0;
+  padding: 0;
+  float: left;
+  white-space: nowrap;
+  background-color: white;
+}
+
+.search-form-params .block > .container {
+  margin: 0 2rem 1rem 0;
 }
 
 .search-form-params .label {
-    margin-bottom: 0.25rem;
-    white-space: nowrap;
+  margin-bottom: 0.25rem;
+  white-space: nowrap;
 }
 
-.search-form-params .label .glyphicons {
-    top: 5px;
-    margin-right: 0.5rem;
-    font-size: 0.8rem;
+.search-form-params .label .fa {
+  position: relative;
+  top: -1px;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
 }
 
 .search-form-params input[type="text"],
 .search-form-params select {
-    width: 15rem;
-    margin-bottom: 0.25rem;
-    background-color: white;
+  width: 10rem;
+  margin-bottom: 0.25rem;
+  background-color: white;
 }
 
 .search-form-params input[type=text]:focus:not([readonly]),
@@ -852,11 +893,17 @@ table.elements tbody > tr.checked div.check {
 }
 
 .close {
-    float: right;
-    margin: -0.5rem 0 1rem 1rem;
-    font-size: 1.8rem;
-    color: #abc;
-    cursor: pointer;
+  float: right;
+  margin: -0.5rem 0 1rem 1rem;
+  font-size: 1.8rem;
+  color: #357;
+  cursor: pointer;
+}
+
+.close .fa {
+  position: relative;
+  top: -6px;
+  font-size: 1rem;
 }
 
 /* Log */
@@ -865,112 +912,7 @@ table.elements tbody > tr.checked div.check {
 
 table.groups.elements,
 table.users.elements {
-    width: 100%;
-}
-
-.addnew {
-    display: inline-block;
-    margin: 1rem 0;
-    padding: 0.5rem 1rem;
-    border: 2px solid orange;
-    border-radius: 2px;
-    background-color: white;
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.addnew:hover {
-    background-color: orange;
-    transition: 0.2s ease;
-}
-
-.addnew .fa,
-.next .fa {
-  display: inline-block;
-  position: relative;
-  top: 2px;
-  margin-left: 1rem;
-  font-size: 1.5rem;
-}
-
-/* Permissions */
-
-/* Tree */
-
-.tree {
-    display: block;
-    margin-bottom: 3rem;
-}
-
-.tree a {
-    color: inherit;
-    font-size: 1.1rem;
-    text-decoration: underline;
-    white-space: nowrap;
-}
-
-.tree a:hover {
-    text-decoration: underline;
-}
-
-.tree a.active {
-    color: teal;
-    text-decoration: underline;
-}
-
-.tree .margin {
-    margin: 5px 0 10px 0;
-    white-space: nowrap;
-}
-
-.tree .item {
-    margin: 0.5rem 0 0 0;
-    font-size: 0.9rem;
-    color: #234e9e;
-    font-weight: bold;
-}
-
-.tree > div[item] > .item {
-    font-size: 1.3rem;
-    color: #397;
-    font-weight: normal;
-}
-
-.tree .padding {
-    margin-left: 1rem;
-    padding-left: 2rem;
-}
-
-.tree .plus {
-    width: 1rem;
-    height: 1rem;
-    float: left;
-    margin: 0 0.5rem 0 0;
-    cursor: pointer;
-    cursor: hand;
-}
-
-.tree .minus {
-    width: 1rem;
-    height: 1rem;
-    float: left;
-    margin: 0 0.5rem 0 0;
-    cursor: pointer;
-    cursor: hand;
-}
-
-.tree .empty {
-    width: 1rem;
-    height: 1rem;
-    float: left;
-    margin: 1px 0.5rem 0 0;
+  width: 100%;
 }
 
 /* Calendar */
@@ -1080,110 +1022,110 @@ div.calendar tr.days td.otherDay
 /* Loader */
 
 .block-ui {
-    display: none;
+  display: none;
 }
 
 .block-ui .wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    text-align: center;
-    vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .block-ui .cssload-loader {
-    position: absolute;
-    display: inline-block;
-    z-index: 1000;
-    top: 40%;
-    left: 0;
-    right: 0;
-    margin: auto;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #357;
+  position: absolute;
+  display: inline-block;
+  z-index: 1000;
+  top: 40%;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #357;
 }
 
 .block-ui .cssload-loader,
 .block-ui .cssload-loader:before,
 .block-ui .cssload-loader:after {
-    animation: 0.5s infinite ease-in-out;
-    -o-animation: 0.5s infinite ease-in-out;
-    -ms-animation: 0.5s infinite ease-in-out;
-    -webkit-animation: 0.5s infinite ease-in-out;
-    -moz-animation: 0.5s infinite ease-in-out;
+  animation: 0.5s infinite ease-in-out;
+  -o-animation: 0.5s infinite ease-in-out;
+  -ms-animation: 0.5s infinite ease-in-out;
+  -webkit-animation: 0.5s infinite ease-in-out;
+  -moz-animation: 0.5s infinite ease-in-out;
 }
 
 .block-ui .cssload-loader:before,
 .block-ui .cssload-loader:after {
-    width: 100%; 
-    height: 100%;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
+  width: 100%; 
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .block-ui .cssload-loader { animation-name: cssload-loader;
-    -o-animation-name: cssload-loader;
-    -ms-animation-name: cssload-loader;
-    -webkit-animation-name: cssload-loader;
-    -moz-animation-name: cssload-loader; }
+  -o-animation-name: cssload-loader;
+  -ms-animation-name: cssload-loader;
+  -webkit-animation-name: cssload-loader;
+  -moz-animation-name: cssload-loader; }
 
 
 @keyframes cssload-loader {
-    from { transform: scale(0); opacity: 1; }
-    to   { transform: scale(1); opacity: 0; }
+  from { transform: scale(0); opacity: 1; }
+  to   { transform: scale(1); opacity: 0; }
 }
 
 @-o-keyframes cssload-loader {
-    from { -o-transform: scale(0); opacity: 1; }
-    to   { -o-transform: scale(1); opacity: 0; }
+  from { -o-transform: scale(0); opacity: 1; }
+  to   { -o-transform: scale(1); opacity: 0; }
 }
 
 @-ms-keyframes cssload-loader {
-    from { -ms-transform: scale(0); opacity: 1; }
-    to   { -ms-transform: scale(1); opacity: 0; }
+  from { -ms-transform: scale(0); opacity: 1; }
+  to   { -ms-transform: scale(1); opacity: 0; }
 }
 
 @-webkit-keyframes cssload-loader {
-    from { -webkit-transform: scale(0); opacity: 1; }
-    to   { -webkit-transform: scale(1); opacity: 0; }
+  from { -webkit-transform: scale(0); opacity: 1; }
+  to   { -webkit-transform: scale(1); opacity: 0; }
 }
 
 @-moz-keyframes cssload-loader {
-    from { -moz-transform: scale(0); opacity: 1; }
-    to   { -moz-transform: scale(1); opacity: 0; }
+  from { -moz-transform: scale(0); opacity: 1; }
+  to   { -moz-transform: scale(1); opacity: 0; }
 }
 
 /* File */
 
 form .loadfile {
-    margin-top: 0.2rem;
+  margin-top: 0.2rem;
 }
 
 form .loadfile .file {
-    display: inline-block;
-    min-width: 6rem;
-    max-width: 50%;
-    height: 3rem;
-    line-height: 3rem;
-    overflow-x: hidden;
-    border: 1px solid #999;
-    border-radius: 2px;
-    vertical-align: middle;
-    text-align: center;
-    padding: 0 1rem;
-    cursor: pointer;
+  display: inline-block;
+  min-width: 6rem;
+  max-width: 50%;
+  height: 3rem;
+  line-height: 3rem;
+  overflow-x: hidden;
+  border: 1px solid #999;
+  border-radius: 2px;
+  vertical-align: middle;
+  text-align: center;
+  padding: 0 1rem;
+  cursor: pointer;
 }
 
 .file-hidden {
-    height: 0;
-    width: 0;
-    overflow: hidden;
+  height: 0;
+  width: 0;
+  overflow: hidden;
 }
 
 /* Autocomplete */
@@ -1234,7 +1176,7 @@ form .loadfile .file {
 /* Other */
 
 .right {
-    float: right;
+  float: right;
 }
 
 span.error {
@@ -1264,4 +1206,5 @@ span.error {
 .vdp-datepicker__calendar {
   box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.18), 0 2px 11px 0 rgba(0, 0, 0, 0.15);
   border: none;
+  white-space: normal;
 }

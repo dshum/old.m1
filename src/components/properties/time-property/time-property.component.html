@@ -1,0 +1,14 @@
+<div *ngIf="mode == 'edit'">
+    <div *ngIf="view.readonly">
+        <label>{{view.title}}:</label> {{view.value | date: 'HH:mm:ss'}}
+    </div>
+    <div *ngIf=" ! view.readonly">
+        <label>{{view.title}}:</label><br>
+        <input type="text" name="hours" [(ngModel)]="hours" (ngModelChange)="setDatetime()" class="time"> :
+        <input type="text" name="minutes" [(ngModel)]="minutes" (ngModelChange)="setDatetime()" class="time"> :
+        <input type="text" name="seconds" [(ngModel)]="seconds" (ngModelChange)="setDatetime()" class="time">
+    </div>
+</div>
+<div *ngIf="mode == 'link'">
+    <div class="label time"><span class="glyphicons glyphicons-clock"></span><span>{{view.title}}</span></div>
+</div>

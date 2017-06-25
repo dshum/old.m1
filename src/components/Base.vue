@@ -48,7 +48,7 @@
               <div class="block-elements" v-for="rubric in rubrics">
                   <h2>{{ rubric.name }}</h2>
                   <ul class="elements" v-for="favorite in favorites[rubric.id]">
-                      <li><a>{{ favorite.name }}</a></li>
+                      <li><router-link :to="{name: 'browse', params: {classId: favorite.class_id}}">{{ favorite.name }}</router-link></li>
                   </ul>
               </div>
             </div>
@@ -56,115 +56,7 @@
           <transition name="switch">
             <div v-show="mode === 'tree'">
               <div class="tree">
-                <div item>
-                    <div class="item">Раздел сайта</div>
-                    <div class="margin">
-                        <div>
-                            <div class="minus"><span class="halflings halflings-menu-down"></span></div>
-                            <a href="root2.html" class="active">Продажа квартир и комнат</a>
-                        </div>
-                        <div class="padding">
-                            <div item>
-                                <div class="item">Раздел сайта</div>
-                                <div class="margin">
-                                    <div class="empty"></div>
-                                    <a href="root2.html">Однокомнатные квартиры</a>
-                                </div>
-                                <div class="margin">
-                                    <div class="empty"></div>
-                                    <a href="root2.html">Двухкомнатные квартиры</a>
-                                </div>
-                                <div class="margin">
-                                    <div class="empty"></div>
-                                    <a href="root2.html">Комнаты</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="plus"><span class="halflings halflings-menu-right"></span></div>
-                            <a href="root2.html">Аренда квартир и комнат</a>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="plus"><span class="halflings halflings-menu-right"></span></div>
-                            <a href="root2.html">Продажа домов и дач</a>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="plus"><span class="halflings halflings-menu-right"></span></div>
-                            <a href="root2.html">Аренда домов и дач</a>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="plus"><span class="halflings halflings-menu-right"></span></div>
-                            <a href="root2.html">Продажа коммерческой недвижимости</a>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="plus"><span class="halflings halflings-menu-right"></span></div>
-                            <a href="root2.html">Аренда коммерческой недвижимости</a>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="empty"></div>
-                            <a href="root2.html">Агентства недвижимости</a>
-                        </div>
-                    </div>
-                </div>
-                <div item>
-                    <div class="item">Служебный раздел</div>
-                    <div class="margin">
-                        <div>
-                            <div class="minus"><span class="halflings halflings-menu-down"></span></div>
-                            <a href="root2.html">Справочники</a>
-                        </div>
-                        <div class="padding">
-                            <div item>
-                                <div class="item">Служебный раздел</div>
-                                <div class="margin">
-                                    <div class="empty"></div>
-                                    <a href="root2.html">Типы помещений</a>
-                                </div>
-                                <div class="margin">
-                                    <div class="empty"></div>
-                                    <a href="root2.html">Населенные пункты</a>
-                                </div>
-                                <div class="margin">
-                                    <div class="empty"></div>
-                                    <a href="root2.html">Районы города</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="empty"></div>
-                            <a href="root2.html">Расходы</a>
-                        </div>
-                    </div>
-                    <div class="margin">
-                        <div>
-                            <div class="empty"></div>
-                            <a href="root2.html">Синхрофазатрон</a>
-                        </div>
-                    </div>
-                </div>
-                <div item>
-                    <div class="item">Настройки сайта</div>
-                    <div class="margin">
-                        <div>
-                            <div class="empty"></div>
-                            <a href="root2.html">Настройки сайта</a>
-                        </div>
-                    </div>
-                </div>
+                <tree-folder></tree-folder>
               </div>
             </div>
           </transition>
@@ -172,7 +64,7 @@
             <div v-show="mode === 'search'">
               <input type="text" id="searchFilter" placeholder="Название">
               <ul class="search items">
-                <li v-for="item in searchItems"><a>{{ item.name }}</a><br><small>{{ item.id }}</small></li>
+                <li v-for="item in searchItems"><router-link :to="{name: 'searchItem', params: {item: item.id}}">{{ item.name }}</router-link><br><small>{{ item.id }}</small></li>
               </ul>
             </div>
           </transition>
@@ -205,8 +97,11 @@
 </template>
 
 <script>
+import TreeFolder from '../components/common/TreeFolder'
+
 export default {
   name: 'base',
+  components: { TreeFolder },
   data () {
     return {
       loggedUser: null,
@@ -369,7 +264,7 @@ export default {
     logout () {
       localStorage.removeItem('loggedUser')
 
-      this.$router.push('login')
+      this.$router.push('/login')
     }
   }
 }
@@ -484,9 +379,9 @@ nav .avatar img {
 
 nav .avatar i.fa {
     position: relative;
-    top: -1rem;
+    top: -1.3rem;
     margin-left: 1rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     color: inherit;
 }
 
@@ -503,7 +398,7 @@ nav .menu {
     border-collapse: separate;
     border-spacing: 1px;
     background-color: white;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 nav .menu ul {
@@ -666,7 +561,7 @@ nav .menu ul > li span {
     padding: 0 0 1rem 0;
 }
 
-.sidebar ul.items > li.active a {
+.sidebar ul.items > li a.router-link-active {
     color: teal;
 }
 
@@ -690,8 +585,8 @@ nav .menu ul > li span {
 
 .sidebar .block-elements h2 {
     margin: 0 0 0.5rem 0;
-    color: #397;
-    font-size: 1.5rem;
+    color: #37a;
+    font-size: 1.3rem;
     font-weight: normal;
 }
 
@@ -699,7 +594,7 @@ nav .menu ul > li span {
     padding: 0 0 0.5rem 0.25rem;
 }
 
-.sidebar .block-elements ul > li.active {
+.sidebar .block-elements ul > li.router-link-active {
     color: teal;
 }
 
@@ -761,7 +656,7 @@ nav .menu ul > li span {
     padding: 0;
 }
 
-.main div.container {
+.main > .container {
     position: absolute;
     top: 0;
     left: 0;
@@ -812,6 +707,80 @@ nav .menu ul > li span {
     color: silver;
 }
 
+/* Tree */
+
+.tree {
+  display: block;
+  margin-bottom: 3rem;
+}
+
+.tree a {
+  color: inherit;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.tree a.router-link-active {
+  color: teal;
+  text-decoration: underline;
+}
+
+.tree .margin {
+  margin: 5px 0 10px 0;
+  white-space: nowrap;
+}
+
+.tree .item {
+  margin: 0.5rem 0 0 0;
+  font-size: 0.8rem;
+  color: #234e9e;
+  font-weight: bold;
+}
+
+.tree > div > div[item] > .item {
+  font-size: 1.3rem;
+  color: #37a;
+  font-weight: normal;
+}
+
+.tree .padding {
+  margin-left: 1rem;
+  padding-left: 2rem;
+  overflow: hidden;
+}
+
+.tree .plus {
+  width: 1rem;
+  height: 1rem;
+  float: left;
+  margin: 0 0.5rem 0 0;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.tree .minus {
+  width: 1rem;
+  height: 1rem;
+  float: left;
+  margin: 0 0.5rem 0 0;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.tree .empty {
+  width: 1rem;
+  height: 1rem;
+  float: left;
+  margin: 1px 0.5rem 0 0;
+}
+
+.tree .fa {
+  position: relative;
+  top: -2px;
+  color: #3a7;
+  font-size: 1.5rem;
+}
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity .2s;
@@ -842,5 +811,43 @@ nav .menu ul > li span {
 .show-enter,
 .show-leave-to {
   opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: max-height 0.4s;
+  overflow: hidden;
+}
+
+.slide-enter,
+.slide-leave-to {
+  max-height: 0;
+}
+
+.slide-enter-to,
+.slide-leave {
+  max-height: 30rem;
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: max-width 0.6s, max-height 0.4s, opacity 0.2s;
+  overflow: hidden;
+}
+
+.slide-fade-enter,
+.slide-fade-leave-to {
+  max-width: 0;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.slide-fade-enter-to,
+.slide-fade-leave {
+  max-width: 30rem;
+  max-height: 30rem;
+  opacity: 1;
+  visibility: visible;
 }
 </style>

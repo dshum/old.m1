@@ -1,0 +1,28 @@
+<div *ngIf="mode == 'edit'">
+    <div *ngIf="view.readonly && view.value">
+        <label>{{view.title}}:</label> {{view.value | date: 'dd.MM.yyyy'}}, {{view.value | date: 'HH:mm:ss'}}
+    </div>
+    <div *ngIf="view.readonly && ! view.value">
+        <label>{{view.title}}:</label> Не определено
+    </div>
+    <div *ngIf=" ! view.readonly">
+        <label>{{view.title}}:</label><span attr.name="{{view.name}}" class="error"></span><br>
+        <input type="text" name="date" [(ngModel)]="date" (ngModelChange)="setDatetime()" class="date" id="{{view.name}}_date"> &nbsp;&nbsp;&nbsp;
+        <input type="text" name="hours" [(ngModel)]="hours" (ngModelChange)="setDatetime()" class="time"> :
+        <input type="text" name="minutes" [(ngModel)]="minutes" (ngModelChange)="setDatetime()" class="time"> :
+        <input type="text" name="seconds" [(ngModel)]="seconds" (ngModelChange)="setDatetime()" class="time">
+    </div>
+</div>
+<div *ngIf="mode == 'browse'">
+    <div *ngIf="view.value">
+        {{view.value | date: 'dd.MM.yyyy'}}<br>
+        <small>{{view.value | date: 'HH:mm:ss'}}</small>
+    </div>
+</div>
+<div *ngIf="mode == 'link'">
+    <div class="label date"><span class="glyphicons glyphicons-calendar"></span><span>{{view.title}}</span></div>
+</div>
+<div *ngIf="mode == 'search'">
+    <div class="label date"><span class="glyphicons glyphicons-calendar"></span><span>{{view.title}}</span></div>
+    <div><input type="text" value="{{view.value}}" class="date" placeholder=""></div>
+</div>
