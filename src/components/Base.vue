@@ -81,8 +81,8 @@
           <transition name="switch">
             <div v-show="mode === 'users'">
               <ul class="menu">
-                <li><router-link to="/groups"><i class="fa fa-user" aria-hidden="true"></i>Группы</router-link></li>
-                <li><router-link to="/users"><i class="fa fa-users" aria-hidden="true"></i>Пользователи</router-link></li>
+                <li><router-link to="/groups"><i class="fa fa-users" aria-hidden="true"></i>Группы</router-link></li>
+                <li><router-link to="/users"><i class="fa fa-user" aria-hidden="true"></i>Пользователи</router-link></li>
                 <li><router-link to="/log"><i class="fa fa-clock-o" aria-hidden="true"></i>Журнал</router-link></li>
                 <li><router-link to="/profile"><i class="fa fa-pencil" aria-hidden="true"></i>Редактировать профиль</router-link></li>
                 <li><router-link to="/password"><i class="fa fa-lock" aria-hidden="true"></i>Сменить пароль</router-link></li>
@@ -160,8 +160,6 @@ export default {
     $('#searchFilter').keyup(function () {
       var str = $(this).val()
 
-      console.log('a')
-
       if (str.length > 0) {
         $('ul.search.items > li:not(:contains("' + str + '"))').hide()
         $('ul.search.items > li:contains("' + str + '")').show()
@@ -170,8 +168,6 @@ export default {
       }
     }).change(function () {
       var str = $(this).val()
-
-      console.log('b')
 
       if (str.length > 0) {
         $('ul.search.items > li:not(:contains("' + str + '"))').hide()
@@ -280,7 +276,7 @@ nav {
     right: 0;
     height: 5rem;
     line-height: 5rem;
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #ddd;
     background-color: white;
     color: black;
 }
@@ -303,11 +299,6 @@ nav .logo a {
     font-size: 1.5rem;
     text-decoration: none;
     color: inherit;
-}
-
-nav .logo .glyphicons {
-    top: 15px;
-    font-size: 1.5rem;
 }
 
 nav ul.switch {
@@ -334,7 +325,7 @@ nav ul.switch > li a {
 }
 
 nav ul.switch > li.active {
-    border-bottom: 2px solid orangered;
+    border-bottom: 3px solid orangered;
 }
 
 nav ul.right {
@@ -668,7 +659,7 @@ nav .menu ul > li span {
 }
 
 .main div.leaf {
-    display: table;
+    display: block;
     margin-bottom: 3rem;
 }
 
@@ -791,16 +782,27 @@ nav .menu ul > li span {
   opacity: 0;
 }
 
+.fade-enter-to,
+.fade-leave {
+  opacity: 1;
+}
+
 .switch-enter-active {
   transition: opacity .8s;
 }
 
-.switch-enter {
+.switch-leave-active {
+  transition: 0s;
+}
+
+.switch-enter,
+.switch-leave-to {
   opacity: 0;
 }
 
-.fade-leave-to {
-  display: none;
+.switch-enter-to,
+.switch-leave {
+  opacity: 1;
 }
 
 .show-enter-active,

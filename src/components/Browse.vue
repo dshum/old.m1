@@ -1,36 +1,28 @@
 <template>
   <div>
-    <div class="path" v-if="currentElement">
-      <router-link to="/browse">Корень сайта</router-link>
-      <template v-for="parent in parents">
-        <span class="divider">/</span>
-        <router-link :to="{name: 'browse', params: {classId: parent.classId}}">{{parent.name}}</router-link>
-      </template>
-      <span class="divider">/</span>
-      <span>{{currentElement.name}}</span>
-    </div>
-    <div class="path" v-else>
-      <span>Корень сайта</span>
-    </div>
     <transition name="show">
       <div class="leaf" v-if="show">
         <div class="buttons">
           <div class="button up" :class="{enabled: currentElement}" @click="up()"><i class="fa fa-level-up"></i><br>Наверх</div>
-          <div class="button edit" :class="{enabled: currentElement}"><i class="fa fa-pencil"></i><br>Редактировать</div>
+          <div class="button edit" :class="{enabled: currentElement}" @click="edit()"><i class="fa fa-pencil"></i><br>Редактировать</div>
           <div class="button save"><i class="fa fa-floppy-o"></i><br>Сохранить</div>
           <div class="button copy"><i class="fa fa-clone"></i><div>Копировать<span class="halflings halflings-triangle-bottom"></span></div></div>
           <div class="button move"><i class="fa fa-arrow-right"></i><div>Перенести<span class="halflings halflings-triangle-bottom"></span></div></div>
           <div class="button delete"><i class="fa fa-trash-o"></i><br>Удалить</div>
         </div>
-        <div class="creates" v-if="creates.length">
-          Добавить:<template v-for="(create, index) in creates"><span v-if="index">,</span><a>{{ create.name }}</a></template>
+        <transition name="fade">
+          <div class="creates" v-if="creates.length">
+            Добавить:<template v-for="(create, index) in creates"><span v-if="index">,</span><a>{{ create.name }}</a></template>
+          </div>
+        </transition>
+        <div v-for="i in items">
+          <item :classId="classId" :item="i" v-on:load="load(1)" v-on:empty="load(0)"></item>
         </div>
-        <div v-for="item in items">
-          <item :classId="classId" :item="item" v-on:load="load(1)" v-on:empty="load(0)"></item>
-        </div>
-        <div class="empty" v-if="isEmpty || !items.length">
-          Элементы не найдены.
-        </div>
+        <transition name="fade">
+          <div class="empty" v-if="isEmpty">
+            Элементы не найдены.
+          </div>
+        </transition>
       </div>
     </transition>
     <transition name="fade">
@@ -45,16 +37,14 @@ import Item from '@/components/common/Item'
 
 export default {
   name: 'browse',
+  props: ['classId', 'item', 'element', 'parents', 'favorite'],
   components: { Spinner, Item },
   data () {
     return {
       show: false,
       loading: false,
-      classId: null,
-      currentItem: null,
-      currentElement: null,
-      parents: [],
-      favorite: null,
+      currentItem: this.item,
+      currentElement: this.element,
       creates: [],
       items: [],
       isEmpty: false,
@@ -63,20 +53,22 @@ export default {
     }
   },
   watch: {
-    '$route' (to, from) {
-      if (this.classId !== to.params.classId) {
-        this.classId = to.params.classId
-        this.show = false
+    item (to, from) {
+      this.currentItem = to
+      this.creates = []
+      this.items = []
 
-        this.getElement()
-        this.getBrowse()
-      }
+      this.getBrowse()
+    },
+    element (to, from) {
+      this.currentElement = to
+      this.creates = []
+      this.items = []
+
+      this.getBrowse()
     }
   },
   created () {
-    this.classId = this.$route.params.classId
-
-    this.getElement()
     this.getBrowse()
   },
   methods: {
@@ -89,33 +81,6 @@ export default {
 
       if (this.loaded === this.items.length) {
         this.isEmpty = !this.isAnyone
-      }
-    },
-    getElement () {
-      if (this.classId) {
-        this.$http.get('/elements/' + this.classId).then((response) => {
-          let data = response.body
-
-          if (data.state && data.state === 'error_element_not_found') {
-            this.$router.push('/browse')
-          } else if (data.state && data.state === 'error_element_access_denied') {
-            this.$router.push('/browse')
-          } else if (data.element) {
-            this.currentItem = data.item
-            this.currentElement = data.element
-            this.parents = data.parents
-            this.favorite = data.favorite
-
-            $(document).attr('title', data.element.name)
-          }
-        })
-      } else {
-        this.currentItem = null
-        this.currentElement = null
-        this.parents = []
-        this.favorite = null
-
-        $(document).attr('title', 'Корень сайта')
       }
     },
     getBrowse () {
@@ -137,6 +102,10 @@ export default {
           this.items = data.items
         }
 
+        if (!data.items.length) {
+          this.isEmpty = true
+        }
+
         this.loading = false
         this.show = true
       })
@@ -146,6 +115,11 @@ export default {
         this.$router.push({name: 'browse', params: {classId: this.currentElement.parent.classId}})
       } else if (this.currentElement) {
         this.$router.push('/browse')
+      }
+    },
+    edit () {
+      if (this.currentElement) {
+        this.$router.push({name: 'browse', params: {classId: this.currentElement.classId}, query: {mode: 'edit'}})
       }
     }
   }

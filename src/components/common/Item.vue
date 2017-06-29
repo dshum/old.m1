@@ -21,7 +21,7 @@
             <tbody>
               <tr v-for="element in elements">
                 <td class="browse"><router-link :to="{name: 'browse', params: {classId: element.classId}}"><i class="fa fa-angle-right"></i></router-link></td>
-                <td class="name"><a><i class="fa fa-pencil"></i><span>{{ element.name }}</span></a></td>
+                <td class="name"><router-link :to="{name: 'browse', params: {classId: element.classId}, query: {mode: 'edit'}}"><i class="fa fa-pencil"></i><span>{{ element.name }}</span></router-link></td>
                 <td v-for="property in properties">
                   <property :className="property.className" mode="browse" :view="element.views[property.name]"></property>
                 </td>
@@ -57,6 +57,21 @@ export default {
       properties: [],
       elements: [],
       pager: null
+    }
+  },
+  watch: {
+    '$props' (to, from) {
+      this.opened = this.item.open
+      this.total = 0
+      this.properties = []
+      this.elements = []
+      this.pager = null
+
+      if (this.opened) {
+        this.getElements()
+      } else {
+        this.getCount()
+      }
     }
   },
   created () {

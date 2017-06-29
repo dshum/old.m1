@@ -5,7 +5,7 @@ import VueResource from 'vue-resource'
 import Login from '@/components/Login'
 import Base from '@/components/Base'
 import Home from '@/components/Home'
-import Browse from '@/components/Browse'
+import Element from '@/components/Element'
 import Search from '@/components/Search'
 import SearchItem from '@/components/SearchItem'
 import Groups from '@/components/Groups'
@@ -40,7 +40,7 @@ export default new Router({
         {
           path: '/browse/:classId?',
           name: 'browse',
-          component: Browse
+          component: Element
         },
         {
           path: '/search',

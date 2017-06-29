@@ -1,24 +1,36 @@
 <template>
   <div v-if="className === 'TextfieldProperty'">
-    <textfield-property :className="className" :mode="mode" :view="view" :model="model"></textfield-property>
+    <textfield-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></textfield-property>
   </div>
   <div v-else-if="className === 'TextareaProperty'">
-    <textarea-property :className="className" :mode="mode" :view="view" :model="model"></textarea-property>
+    <textarea-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></textarea-property>
   </div>
   <div v-else-if="className === 'RichtextProperty'">
-    <richtext-property :className="className" :mode="mode" :view="view" :model="model"></richtext-property>
+    <richtext-property v-on:update="update(arguments[0])" v-on:save="save()" :className="className" :mode="mode" :view="view"></richtext-property>
   </div>
   <div v-else-if="className === 'DatetimeProperty'">
-    <datetime-property :className="className" :mode="mode" :view="view" :model="model"></datetime-property>
+    <datetime-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></datetime-property>
   </div>
   <div v-else-if="className === 'DateProperty'">
-    <date-property :className="className" :mode="mode" :view="view" :model="model"></date-property>
+    <date-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></date-property>
+  </div>
+  <div v-else-if="className === 'IntegerProperty'">
+    <integer-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></integer-property>
+  </div>
+  <div v-else-if="className === 'FloatProperty'">
+    <float-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></float-property>
+  </div>
+  <div v-else-if="className === 'ImageProperty'">
+    <image-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></image-property>
   </div>
   <div v-else-if="className === 'OneToOneProperty'">
-    <onetoone-property :className="className" :mode="mode" :view="view" :model="model"></onetoone-property>
+    <onetoone-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></onetoone-property>
   </div>
   <div v-else-if="className === 'CheckboxProperty'">
-    <checkbox-property :className="className" :mode="mode" :view="view" :model="model"></checkbox-property>
+    <checkbox-property v-on:update="update(arguments[0])" :className="className" :mode="mode" :view="view"></checkbox-property>
+  </div>
+  <div v-else-if="className === 'VirtualProperty'">
+    <virtual-property :className="className" :mode="mode" :view="view"></virtual-property>
   </div>
   <div v-else>
     <div v-if="mode === 'browse'">
@@ -40,8 +52,12 @@ import TextareaProperty from '@/components/properties/TextareaProperty'
 import RichtextProperty from '@/components/properties/RichtextProperty'
 import DatetimeProperty from '@/components/properties/DatetimeProperty'
 import DateProperty from '@/components/properties/DateProperty'
+import IntegerProperty from '@/components/properties/IntegerProperty'
+import FloatProperty from '@/components/properties/FloatProperty'
+import ImageProperty from '@/components/properties/ImageProperty'
 import OnetooneProperty from '@/components/properties/OnetooneProperty'
 import CheckboxProperty from '@/components/properties/CheckboxProperty'
+import VirtualProperty from '@/components/properties/VirtualProperty'
 
 export default {
   name: 'property',
@@ -51,9 +67,29 @@ export default {
     RichtextProperty,
     DatetimeProperty,
     DateProperty,
+    IntegerProperty,
+    FloatProperty,
+    ImageProperty,
     OnetooneProperty,
-    CheckboxProperty
+    CheckboxProperty,
+    VirtualProperty
   },
-  props: ['className', 'mode', 'view', 'model']
+  props: ['className', 'mode', 'view'],
+  data () {
+    return {
+
+    }
+  },
+  mounted () {
+    // this.update({value: this.view.value})
+  },
+  methods: {
+    update (value) {
+      this.$emit('update', this.view.name, value)
+    },
+    save () {
+      this.$emit('save')
+    }
+  }
 }
 </script>

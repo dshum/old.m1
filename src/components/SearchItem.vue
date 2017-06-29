@@ -55,8 +55,8 @@
             </thead>
             <tbody>
               <tr v-for="element in currentItem.elements">
-                <td class="browse"><a><i class="fa fa-angle-right"></i></a></td>
-                <td class="name"><a><i class="fa fa-pencil"></i><span>{{ element.name }}</span></a></td>
+                <td class="browse"><router-link :to="{name: 'browse', params: {classId: element.classId}}"><i class="fa fa-angle-right"></i></router-link></td>
+                <td class="name"><router-link :to="{name: 'browse', params: {classId: element.classId}, query: {mode: 'edit'}}"><i class="fa fa-pencil"></i><span>{{ element.name }}</span></router-link></td>
                 <td v-for="property in currentItem.properties">
                   <property :className="property.className" mode="browse" :view="element.views[property.name]"></property>
                 </td>
